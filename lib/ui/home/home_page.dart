@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  void onSearch (String text) {
+  void onSearch(String text) {
     print('onSearch 호출됨');
   }
 
@@ -27,6 +27,19 @@ class _HomePageState extends State<HomePage> {
       },
       child: Scaffold(
         appBar: AppBar(
+          actions: [
+            GestureDetector(
+                onTap: () {
+                  onSearch(textEditingController.text);
+                },
+                // 버튼의 터치영역은 44 디바이스 픽셀 이상으로 해줘야 함!! (UX)
+                child: Container(
+                    width: 50,
+                    height: 50,
+                    // 컨테이너에 배경색이 없으면 자녀 위젯에만 터치 이벤트가 적용됨
+                    color: Colors.transparent,
+                    child: Icon(Icons.search))),
+          ],
           title: TextField(
             maxLines: 1,
             onSubmitted: onSearch,
