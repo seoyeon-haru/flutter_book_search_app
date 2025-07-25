@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   TextEditingController textEditingController = TextEditingController();
+
+  @override
+  void dispose() {
+    // TextEditingController 사용시에는 반드시 dispose 호출해줘야 메모리에서 소거됨!
+    textEditingController.dispose();
+    super.dispose();
+  }
 
   void onSearch (String text) {
     print('onSearch 호출됨');
